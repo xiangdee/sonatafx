@@ -25,8 +25,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#f39b9b"
-      },
-      "package": "com.xiangdee.binaryeasytrade"
+      }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
