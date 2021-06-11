@@ -58,6 +58,7 @@
     "redux": "^4.1.0",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
+    "undefined": "redux-persist/integration/react",
     "expo-updates": "~0.5.4",
     "react-native-unimodules": "~0.13.3"
   },
