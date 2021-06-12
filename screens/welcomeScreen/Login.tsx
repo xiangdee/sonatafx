@@ -3,9 +3,11 @@ import { withTheme, Title, TextInput, Button, Text, Card } from 'react-native-pa
 import { View, TouchableOpacity } from 'react-native';
 import { sitename, ErrorInputText, sitelink } from '../../defaults';
 import Toast from 'react-native-root-toast';
-import * as SecureStore from 'expo-secure-store';
 import axios from 'axios';
 import { ButtonComponent } from '../../components/button';
+import { connect } from 'react-redux';
+import { signup_success } from '../../actions/index';
+
 
 class Login extends Component {
     state = {
@@ -17,6 +19,12 @@ class Login extends Component {
         twofa:false
 
     }
+
+    setLogIn = (data) => {
+        this.props.signup_success(data)
+        this.setState({reload:true})
+    }
+
     handleLogin = async () =>{
         this.setState({loading:true,signin_error:''})
         const {username,password,signin_error} = this.state;
@@ -49,8 +57,7 @@ class Login extends Component {
             else {
                 const token = response.data[1];
                 const data ={username,token};                
-                SecureStore.setItemAsync('userLoggedIn',JSON.stringify(data));
-                this.setState({reload:true})
+               this.setLogIn(data);
                 
             }
         }).catch(e => {
@@ -147,5 +154,10 @@ class Login extends Component {
     }
 }
 
-
-export default withTheme(Login)
+const mapStateToProps = (state) => {
+    const {signup_success} = state.Auth;
+    return {
+        signup_success
+    }
+}
+export default connect(mapStateToProps,{signup_success})(withTheme(Login))

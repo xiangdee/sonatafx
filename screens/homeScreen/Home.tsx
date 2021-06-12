@@ -3,7 +3,7 @@ import * as SecureStore from 'expo-secure-store';
 import { withTheme,Text,Card, Title, Button, Caption } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { userLoggedIn_update } from '../../actions/userActions'  
-import { View, useColorScheme, ScrollView, Linking } from 'react-native';
+import { View, ScrollView, Linking } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useIsFocused  } from '@react-navigation/native'
@@ -12,21 +12,13 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Home = (props)=>  {
-  const themetype=useColorScheme();
-  let tradingtheme 
-  if (themetype=='light') {
-    tradingtheme='Light'
-  }else{
-    tradingtheme='Dark'
-  }
  const isFocused= useIsFocused();
- const store = async ()=> {
-    return await SecureStore.getItemAsync('userLoggedIn')
-    .then(req =>  {
-      props.userLoggedIn_update(JSON.parse(req));
-      return true; }
-      )
-    .catch(e =>{return false;});
+ const store = async ()=> {   
+   if (!props.isLogggedin) {
+     props.navigation.replace('Welcome')
+   }else {
+    props.userLoggedIn_update(props.isLogggedin)
+   }
   }
 
      const displayMainContent = () => { 
@@ -209,11 +201,14 @@ const Home = (props)=>  {
   
   const mapStateToProps =  (state) => {
     const {userverify,username,user,token} = state.Users;
+    const {isLogggedin} = state.Auth;
 
     return {userverify:userverify,
            username:username,
            user:user,
-           token:token};
+           token:token,
+           isLogggedin:isLogggedin
+          };
 
   }
 

@@ -21,19 +21,27 @@ export default (state= INITIAL_STATE, action:any) => {
         break;
     case 'set_transactions':
         return  {...state,transactionsLoader:true,transactions:action.payload}
+        break    
     case 'set_referals':
         return  {...state,refererLoader:true,referals:action.payload}    
+        break    
     case 'set_deposits':
         return {...state,deposits:action.payload}    
         break;
     case 'set_transactionsLoader':
         return {...state,transactionsLoader:false}    
+        break    
     case 'set_refererLoader':
         return {...state,refererLoader:false}    
+        break    
     case 'set_withdrawals':    
         return {...state,withdrawals:action.payload}
+        break    
     case 'set_activities' :     
         return  {...state,activitiesLoader:true,activities:action.payload}
+    case 'logout': 
+        return {...state,...INITIAL_STATE}
+        break    
      default:
          return state;
  }

@@ -2,30 +2,22 @@ import React, { useState, useEffect } from 'react'
 import { View,Image } from 'react-native'
 import { useTheme } from 'react-native-paper'
 import * as SecureStore from 'expo-secure-store';
+import { connect } from 'react-redux';
 
-export default function Loading({navigation}) {
+function Loading({navigation,isLogggedin}) {
     const [userLoggedIn,userLoggedInSet] = useState({})
-    const store = async () => {
-      const result =  await SecureStore.getItemAsync('userLoggedIn');
-      // SecureStore.deleteItemAsync('userLoggedIn');
-      userLoggedInSet(result);
-      return result;
-    }
-     const  displayMainContent =  () => { 
-      store() ;      
-      if ( userLoggedIn !== null) {
-        return navigation.replace('Home')
+     const store = () => {
+      if (isLogggedin) {
+        navigation.replace('Home')
       }else{
-        return navigation.replace('Welcome')
+        navigation.replace('Welcome')        
       }
-      
-      
-    }
+     }
   
     useEffect(() => {
-        
-        displayMainContent();
-    })
+       store()
+
+      },[])
     const theme = useTheme();
     const {colors} = theme;
     return (
@@ -36,3 +28,11 @@ export default function Loading({navigation}) {
   </View>
     )
 }
+
+const mapStateToProps = (state) => {
+  const {isLogggedin} = state.Auth;
+  return {
+    isLogggedin:isLogggedin
+  }
+}
+export default  connect(mapStateToProps)(Loading)

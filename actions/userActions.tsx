@@ -1,6 +1,13 @@
 import axios from 'axios';
 import Toast from 'react-native-root-toast';
 import { sitelink } from '../defaults';
+
+
+export const logout = () => {
+    return {
+        type: 'logout'
+    }
+}
 export const userLoggedIn_update = (value:{})=> {
    return (dispatch) => {
     axios.post(`https://api.${sitelink}/user`, 
@@ -11,9 +18,7 @@ export const userLoggedIn_update = (value:{})=> {
             'Content-Type': 'application/json'
         }
     }
-    ).then(res => {
-        console.log(res.data[1]);
-        
+    ).then(res => {        
         if (res.data[0] == false) {
             dispatch({
                 type:'userverify_fail'

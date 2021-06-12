@@ -1,11 +1,22 @@
 import axios from "axios"
 import Toast from 'react-native-root-toast';
-import * as SecureStore from 'expo-secure-store';
 
+export const logout = () => {
+    return {
+        type: 'logout'
+    }
+}
 export const text_update = ({prop,value}) => {
     return {
         type : 'text_update',
         payload : {prop,value}
+    }
+}
+
+export const signup_success = (data) => {    
+    return {
+        type : 'signup_success',
+        payload:data
     }
 }
 
@@ -154,12 +165,10 @@ export const  signup = (name,username,email,password,gender,country,state,refera
                 
             } else {
                 const token = response.data[1];
-                const data ={username,token};
-                console.log(data);
-                
-                SecureStore.setItemAsync('userLoggedIn',JSON.stringify(data));
+                const data ={username,token};                
                 dispatch({
                     type:'signup_success',
+                    payload:data
                 })  
             }
         }).catch(e => {

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { withTheme, Title, TextInput, Button, Text, Card, ActivityIndicator } from 'react-native-paper';
 import { View, TouchableOpacity } from 'react-native';
-import { sitename, ErrorInputText, sitelink } from '../../defaults';
+import { ErrorInputText, sitelink } from '../../defaults';
 import Toast from 'react-native-root-toast';
 import axios from 'axios';
 import { ButtonComponent } from '../../components/button';
-import * as SecureStore from 'expo-secure-store';
+import { connect } from 'react-redux';
+import { signup_success } from '../../actions/index';
 
 class TwoFaSignIn extends Component {
     state = {
@@ -15,6 +16,11 @@ class TwoFaSignIn extends Component {
         pin:'',
         resendLoadingText:'',
         reload:false
+    }
+
+    setLogIn = (data) => {
+        this.props.signup_success(data)
+        this.setState({reload:true})
     }
     handleLogin = async () =>{
         this.setState({loading:true,signin_error:'',signin_success:''})
@@ -36,12 +42,12 @@ class TwoFaSignIn extends Component {
                 this.setState({signin_error:response.data[1]})
             } else {
                 const token=token2;
-                const data ={username,token};                                
-                SecureStore.setItemAsync('userLoggedIn',JSON.stringify(data));
-                this.setState({reload:true})
+                const data ={username:username,token:token};                                
+                this.setLogIn(data);
+                
             }
         }).catch(e => {
-            this.setState({loading:false})
+            this.setState({loading:false})            
             Toast.show('network errorr.', {
                 duration: Toast.durations.LONG,
               })
@@ -169,5 +175,10 @@ class TwoFaSignIn extends Component {
     }
 }
 
-
-export default withTheme(TwoFaSignIn);
+const mapStateToProps = (state) => {
+    const {signup_success} = state.Auth;
+    return {
+        signup_success
+    }
+}
+export default connect(mapStateToProps,{signup_success})(withTheme(TwoFaSignIn));

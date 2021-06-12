@@ -9,8 +9,11 @@ import axios from 'axios';
 import { sitelink } from '../../defaults';
 import Toast from 'react-native-root-toast';
 import * as SecureStore from 'expo-secure-store';
+import { CommonActions } from '@react-navigation/native';
+import { logout as authLogout} from '../../actions/index';
+import { logout as userLogout} from '../../actions/userActions';
 
- function Profile({user,theme,token,userLoggedIn_update,navigation}) {
+ function Profile({user,theme,token,userLoggedIn_update,navigation,authLogout,userLogout}) {
      const [proofLoading,proofLoadingSet] = useState('');
      const {username,profilepic} = user;
      useEffect(() => {
@@ -74,9 +77,18 @@ import * as SecureStore from 'expo-secure-store';
             }
         }
         const handleLogout = async () => {
-            await SecureStore.deleteItemAsync('userLoggedIn').then(
-                navigation.replace('welcome')
-            )
+            userLogout();
+            authLogout();
+                    navigation.dispatch(
+                    CommonActions.reset({
+                      index: 1,
+                      routes: [
+                        { name: 'Loading' }
+                       
+                      ],
+                    })
+                  )
+            
         }
     return (
         <ScrollView style={{marginTop:50}}>
@@ -172,4 +184,4 @@ const mapStateToProps =(state) => {
         token:token
     }
 }
-export default connect(mapStateToProps)(withTheme(Profile))
+export default connect(mapStateToProps,{userLogout,authLogout})(withTheme(Profile))
