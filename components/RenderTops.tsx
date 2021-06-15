@@ -1,7 +1,7 @@
 import { Card, withTheme,Text } from 'react-native-paper';
 import React from 'react';
 import { View,Image } from 'react-native';
-import rand from './rand';
+import {random} from './rand';
 const RenderTops = ({data}) => {
     const {item} = data;
     
@@ -24,7 +24,7 @@ const RenderTops = ({data}) => {
                         
                     </View>
                     <View style={{marginLeft:120,marginTop:30}}>
-                        <Text>{rand.returnNameAndAmou}</Text>
+                        <Text>${random()}</Text>
                     </View>
                 </View>
         </Card.Content>
@@ -32,4 +32,4 @@ const RenderTops = ({data}) => {
     )
 };
 
-export default withTheme(RenderTops);
+export default RenderTops;
