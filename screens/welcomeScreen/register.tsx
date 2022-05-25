@@ -7,7 +7,7 @@ import Toast from 'react-native-root-toast';
 import { text_update, country_update, check_username, check_email, signup } from '../../actions/index';
 import { Picker } from '@react-native-picker/picker';
 import axios from 'axios';
-import { ErrorInputText } from '../../defaults';
+import { ErrorInputText, sitelink } from '../../defaults';
 import { ButtonComponent } from '../../components/button';
 
  class Register extends Component {
@@ -17,7 +17,7 @@ import { ButtonComponent } from '../../components/button';
     }
  
     async componentDidMount () {
-        const data = await axios.get('https://api.binaryeasytrade.com/auth/countries',{
+        const data = await axios.get(`https://api.${sitelink}/auth/countries`,{
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -139,7 +139,7 @@ import { ButtonComponent } from '../../components/button';
                  onChangeText={text => text_update({prop : 'password',value:text})}
                  autoCapitalize = 'none'/>
                  <Picker style={{backgroundColor:theme.colors.background,color:theme.colors.text}}
-                onValueChange={this.updateGender.bind(this)} selectedValue={selected_gender[0]}>
+                onValueChange={this.updateGender.bind(this)} selectedValue={selected_gender[0]} itemStyle={{height:50}}>
                 <Picker.Item label='select Gender' />
                 <Picker.Item label='Male' value='male'/>
                 <Picker.Item label='Female' value='female'/>
@@ -149,7 +149,7 @@ import { ButtonComponent } from '../../components/button';
                 </Picker>
 
                 <Picker style={{backgroundColor:theme.colors.background,color:theme.colors.text}}
-                selectedValue={selected_country} onValueChange={country_update.bind(this)} >
+                selectedValue={selected_country} onValueChange={country_update.bind(this)}  itemStyle={{height:50}}>
                 <Picker.Item label='select country' />
 
                    
@@ -167,7 +167,7 @@ import { ButtonComponent } from '../../components/button';
                     {/* {JSON.stringify(this.state.countries)} */}
                 </Text>
                 <Picker style={{backgroundColor:theme.colors.background,color:theme.colors.text}}
-                onValueChange={this.updateRegions.bind(this)} selectedValue={selected_state[0]}>
+                onValueChange={this.updateRegions.bind(this)} selectedValue={selected_state[0]} itemStyle={{height:50}}>
                 <Picker.Item label='select state/region' value='null'/>
 
                    

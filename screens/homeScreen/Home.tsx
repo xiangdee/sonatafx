@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import * as SecureStore from 'expo-secure-store';
-import { withTheme,Text,Card, Title, Button, Caption } from 'react-native-paper';
+import { withTheme,Text,Card, Title, Button, Caption, Avatar } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { userLoggedIn_update } from '../../actions/userActions'  
 import { View, ScrollView, Linking } from 'react-native';
@@ -14,7 +14,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 const Home = (props)=>  {
  const isFocused= useIsFocused();
  const store = async ()=> {   
-   if (!props.isLogggedin) {
+  if (props.isLogggedin === null) {
+    navigation.replace('Welcome')
+   }
+  else if (Object.keys(props.isLogggedin).length === 0) {
      props.navigation.replace('Welcome')
    }else {
     props.userLoggedIn_update(props.isLogggedin)
@@ -41,7 +44,16 @@ const Home = (props)=>  {
       const {theme,navigation,username,user,token} = props;
       return (
         <ScrollView style={{marginTop:30}}>
-            <Card style={{backgroundColor:theme.colors.primary}}>
+            <View style={{ marginTop:40,marginBottom:40, marginLeft:20,marginRight:20,flexDirection:'row',justifyContent:'space-between' }}>
+               <View>
+               <Text style={{ fontSize:22 }}>Hello { user.name },</Text>
+               <Text style={{ fontSize:17 }}>Welcome</Text>
+               </View>
+               <View>
+                 <Avatar.Image size={40} source={{uri:user.profilepic}} />
+               </View>
+            </View>  
+            <Card style={{backgroundColor:theme.colors.primary,marginLeft:20,marginRight:20,borderRadius:20}}>
               <Card.Content style={{alignItems:'center'}}>
                 <Title style={{color:'white'}}>Total Balance</Title>
                 <Text style={{color:'white',marginTop:5}}>
@@ -82,7 +94,7 @@ const Home = (props)=>  {
                 </View>
               </Card.Content>
             </Card>
-            <View style={{marginLeft:10,marginRight:10,marginTop:20}}>
+            <View style={{marginLeft:20,marginRight:20,marginTop:20}}>
             <Card>
                       <View style={{marginLeft:10,marginRight:10,marginTop:25}}>
                         <Title style={{fontWeight:'bold'}}>Investment Analysis</Title>
@@ -103,7 +115,7 @@ const Home = (props)=>  {
                             <TouchableOpacity onPress={()=> navigation.navigate('TopDeposit')}>
                               <Card style={{backgroundColor:theme.colors.background,width:120,height:110}}>
                                 <Card.Content>
-                                    <MaterialCommunityIcons name='currency-usd-circle' size={41} color={theme.colors.text} style={{marginLeft:10}}/> 
+                                    <FontAwesome5 name='dollar-sign' size={41} color={theme.colors.text} style={{marginLeft:10}}/> 
                                     <Text style={{marginLeft:10}}>Recent Deposits</Text>
                                 </Card.Content>
                               </Card>
@@ -194,7 +206,7 @@ const Home = (props)=>  {
                     </Card>
                     
             </View>
-            <StatusBar style="auto" backgroundColor={theme.colors.primary} />
+            
         </ScrollView>
       )
     }

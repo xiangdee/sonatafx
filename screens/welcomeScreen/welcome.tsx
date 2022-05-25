@@ -4,7 +4,7 @@ import { Text, Title, withTheme, Card, Paragraph, Avatar, Button } from 'react-n
 import { sitename } from '../../defaults';
 import { StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const LottieView = require("lottie-react-native");
 
 
@@ -21,19 +21,27 @@ return (
 
             <View style = { {height:350} }>
             <LottieView        
-            source={require('../../assets/62075-teen-walking.json')}
+            source={require('../../assets/103957-trading-crypto.json')}
             autoPlay
             Loop
             />
             </View>
-
-        <Button mode="contained" style={{roundness:7, marginLeft:25, marginRight:25,height:50}} 
-        labelStyle={{marginTop:15, color:"#fff"}}
-        onPress={() => props.navigation.navigate('register')}>Create Account</Button>
+        <View style={{ marginLeft:25,flexDirection:'row',justifyContent:'space-around' }}>
+            <Text style={{ marginTop:10,fontSize:25 }}>
+                Create Account
+            </Text>
+            <Button mode="contained" style={{ marginLeft:25, marginRight:25,height:60,width:60,borderRadius: 100}} 
+            labelStyle={{marginTop:10, color:"#fff"}}
+            onPress={() => props.navigation.navigate('register')}>
+                <FontAwesome5 name='angle-right' size={33} color={props.theme.colors.text} style={{marginLeft:10}}/>
+            </Button>
+        </View>    
 
         
 
-        <Card style={{ position: 'absolute',  bottom:0,width:"100%" }}>
+        
+
+        <Card style={{ position: 'absolute',  bottom:0,width:"100%",height:60 }}>
             <Card.Content>
                 <TouchableOpacity onPress={()=> props.navigation.navigate('login')}>
     
@@ -53,16 +61,14 @@ return (
 const style = StyleSheet.create({
 titeText : {
     marginTop:200,
-    marginBottom:30,
-    marginLeft: 50,
-    marginRight: 50,
+    marginBottom:10,
+    textAlign:'center',
+    fontSize:30
     
 },
 text : {
-    marginRight:25,
-    marginLeft:25,
-    marginBottom:10,
-    textAlign:'justify',
+ 
+    textAlign:'center',
 }
 });
 export default withTheme(welcome);

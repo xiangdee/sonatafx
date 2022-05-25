@@ -7,10 +7,13 @@ import { connect } from 'react-redux';
 function Loading({navigation,isLogggedin}) {
     const [userLoggedIn,userLoggedInSet] = useState({})
      const store = () => {
-      if (isLogggedin) {
-        navigation.replace('Home')
+       if (isLogggedin === null) {
+        navigation.replace('Welcome')
+       }
+      else if (Object.keys(isLogggedin).length === 0) {
+        navigation.replace('Welcome')
       }else{
-        navigation.replace('Welcome')        
+        navigation.replace('Home')        
       }
      }
   
@@ -21,9 +24,10 @@ function Loading({navigation,isLogggedin}) {
     const theme = useTheme();
     const {colors} = theme;
     return (
+      
       <View style={{backgroundColor:colors.background,flex:1}}>
       <View style={{alignItems:'center'}}>
-        <Image  source={require('../../assets/images/splash.png')}/>
+        <Image  source={require('../../assets/images/splash.png')} style={{ width:'100%' }}/>
       </View>
   </View>
     )

@@ -7,7 +7,7 @@ import { Picker } from '@react-native-picker/picker';
 import { ButtonComponent } from '../../components/button';
 import axios from 'axios';
 import Toast from 'react-native-root-toast';
-import { ErrorInputText } from '../../defaults';
+import { ErrorInputText, sitelink } from '../../defaults';
 import RenderTransaction from '../../components/RenderTransaction';
 import { connect } from 'react-redux';
 import {user_deposits} from '../../actions/userActions';

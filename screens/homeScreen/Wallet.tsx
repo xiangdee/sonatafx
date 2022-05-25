@@ -46,7 +46,7 @@ function Wallet({user,theme,navigation,transactions,transactionsLoader,user_tran
                 return( 
                 <>
                     <Text style={{ marginLeft: 20, marginRight: 20 }}>
-                        No withdrawals
+                        No Transaction Yet
                     </Text></>
                  )   
                 }
@@ -60,7 +60,7 @@ function Wallet({user,theme,navigation,transactions,transactionsLoader,user_tran
         }
 
     return (
-        <ScrollView horizontal={false} style={{marginTop:50}}>
+        <ScrollView horizontal={false} style={{marginTop:100}}>
             <ScrollView  horizontal={true} showsHorizontalScrollIndicator={false}>
                     <Card style={{backgroundColor:theme.colors.success,marginRight:20,marginLeft:20,width:270,height:130}}>
                         <Card.Content style={{flexDirection:'row',justifyContent:'space-between'}}>

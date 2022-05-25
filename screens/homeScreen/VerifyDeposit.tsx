@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { View,Image, ActivityIndicator, Linking, ScrollView, Platform } from 'react-native';
-import Clipboard from '@react-native-clipboard/clipboard';
+import Clipboard from 'expo-clipboard';
 import { Card, Title,Text, withTheme, TextInput, Button } from 'react-native-paper';
 import Toast from 'react-native-root-toast';
 import { sitelink, sitename } from '../../defaults';

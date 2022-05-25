@@ -5,8 +5,8 @@ import {DefaultTheme as NavigationDefaultTheme } from '@react-navigation/native'
 
 
 
-export  const sitename = 'Binaryeasytrade';
-export const sitelink = 'binaryeasytrade.com';
+export  const sitename = 'sonatafx';
+export const sitelink = 'sonatafx.com';
 
 export const  themeDark = {
     ...DarkTheme,
@@ -17,10 +17,10 @@ export const  themeDark = {
       colors : {
         ...DarkTheme.colors,
         ...NavigationDarkTheme,
-        background:'#0f0404',
-        card: '#150d0d',
-        surface :'#150d0d',
-        primary :'#691515',
+        background:'#060e17',
+        card: '#0c1825',
+        surface :'#0c1825',
+        primary :'#286ebb',
         info: "#5bc0de",
         warning: "#f0ad4e",
         danger: "#d9534f",
@@ -37,7 +37,7 @@ export const  themeDark = {
     colors : {
         ...DefaultTheme.colors,
         ...NavigationDefaultTheme.colors,
-            primary:"#9f2020",
+            primary:"#328bed",
             accent:"#009ACD",
             info: "#5bc0de",
             warning: "#f0ad4e",

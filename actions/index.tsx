@@ -1,5 +1,6 @@
 import axios from "axios"
 import Toast from 'react-native-root-toast';
+import { sitelink } from "../defaults";
 
 export const logout = () => {
     return {
@@ -22,7 +23,7 @@ export const signup_success = (data) => {
 
 export const country_update = (id) => {
    return (dispatch) => { 
-        axios.post('https://api.binaryeasytrade.com/auth/states', 
+        axios.post(`https://api.${sitelink}/auth/states`, 
         { value:id },
         {
             headers: {
@@ -57,7 +58,7 @@ export const  check_username = (value) => {
             type:'username_available',
             payload:value
         })  
-       await axios.post('https://api.binaryeasytrade.com/auth/checkusername', 
+       await axios.post(`https://api.${sitelink}/auth/checkusername`, 
         { value:value },
         {
             headers: {
@@ -97,7 +98,7 @@ export const  check_email = (value) => {
             type:'email_available',
             payload:value
         }) 
-       await axios.post('https://api.binaryeasytrade.com/auth/checkemail', 
+       await axios.post(`https://api.${sitelink}/auth/checkemail`, 
         { value:value },
         {
             headers: {
@@ -138,7 +139,7 @@ export const  signup = (name,username,email,password,gender,country,state,refera
         dispatch({
             type:'singin_loading'
         });   
-       await axios.post('https://api.binaryeasytrade.com/auth/signup', 
+       await axios.post(`https://api.${sitelink}/auth/signup`, 
         { 
             name:name,
             username:username,

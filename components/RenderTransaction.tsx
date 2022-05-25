@@ -102,7 +102,7 @@ import * as Progress from 'react-native-progress';
     
 
     return (
-        <Card>
+        <Card style={{ marginTop:7 }}>
             <Card.Content>
                 <View style={styles.lineContent}>
                 <Text style={{color:tColor}}>{tSign}{item.value}</Text>
