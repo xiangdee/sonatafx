@@ -139,18 +139,22 @@ import { useIsFocused } from '@react-navigation/native';
 
     const  displayButton = () =>{
        if (activated < 1) {
-           return     <ButtonComponent loading={true} disabled={true} >
-                Pending Activation
-            </ButtonComponent>
+           return    <TouchableOpacity onPress={withdrawHandler.bind(this)}>
+                            <ButtonComponent loading={false} disabled={false}>
+                                  Withdraw
+                        </ButtonComponent>
+                   </TouchableOpacity> 
        }else if (limit == false) {
         return     <ButtonComponent loading={true} disabled={true} >
                         Limit Exhausted
                     </ButtonComponent>
        }else {
         if (loading ==false) {
-            return <ButtonComponent onPressVal={withdrawHandler.bind(this)}>
-                        Withdraw Now
-                     </ButtonComponent>
+            return <TouchableOpacity onPress={withdrawHandler.bind(this)}>
+                            <ButtonComponent>
+                                Withdraw
+                        </ButtonComponent>
+                </TouchableOpacity> 
             
         }else{
             return     <ButtonComponent loading={true} disabled={true} >
@@ -214,9 +218,9 @@ import { useIsFocused } from '@react-navigation/native';
             onChangeText={text=> handlePinInsert(text)} value={pinValue}/>
 
             
-                <TouchableOpacity>
+                
                 {pinButton()}
-                </TouchableOpacity>
+                
                 {displayWithdrawError()}
             </View>
             </>
@@ -225,12 +229,13 @@ import { useIsFocused } from '@react-navigation/native';
 
             <><View style={{ marginTop: 5, marginLeft: 20, marginRight: 20 }}>
                     <Text style={{ alignItems: 'center' }}>Amount</Text>
-                    <TextInput mode='outlined' placeholder='How much to Withdraw? USD'
+                    <TextInput mode='outlined' placeholder='How much to Send? USD'
                         onChangeText={text => withdrawValueSet(text)} value={withdrawValue} />
                 </View><View style={{ marginTop: 5, marginLeft: 20, marginRight: 20 }}>
 
                         <Picker style={{ backgroundColor: theme.colors.background, color: theme.colors.text }}
-                            onValueChange={value => paymentMethodSet(value)} selectedValue={paymentMethod}>
+                            onValueChange={value => paymentMethodSet(value)} selectedValue={paymentMethod}
+                            itemStyle={{color:theme.colors.text}}>
                             <Picker.Item label='select payment method' />
                             <Picker.Item label='Bitcoin Withdrawal' value='Bitcoin' />
                             <Picker.Item label='Bank/Western Union' value='Bank' />

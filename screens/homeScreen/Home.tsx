@@ -62,33 +62,34 @@ const Home = (props)=>  {
               </Card.Content>
               <Card.Content style={{alignItems:'center',marginTop:10}}>
                 <View  style={{flexDirection:'row'}}>
-                  <TouchableOpacity>
-                    <Button style={{opacity:0.9,backgroundColor:"#150d0d",
-                      borderBottomLeftRadius:8,borderTopLeftRadius:8,
-                      borderBottomRightRadius:0,borderTopRightRadius:0,marginRight:2,width:150}}
-                      onPress={()=> navigation.navigate('Deposit', {
+                  <TouchableOpacity onPress={()=> navigation.navigate('Deposit', {
                         username:user.username,
                         userid:user.id
                         
-                      })}
+                      })}>
+                    <Button style={{opacity:0.9,backgroundColor:"#150d0d",
+                      borderBottomLeftRadius:8,borderTopLeftRadius:8,
+                      borderBottomRightRadius:0,borderTopRightRadius:0,marginRight:2,width:150}}
+                      
                       >
                         <Text style={{color:'white'}}>DEPOSIT</Text>
                     </Button>
                   </TouchableOpacity>
-                   <TouchableOpacity>
+                   <TouchableOpacity
+                   onPress={()=> navigation.navigate('Withdraw', {
+                    username:user.username,
+                    userid:user.id,
+                    "activated":user.activated,
+                    "limit":user.limit,
+                    withdrawalRequest:user.withdrawalRequest
+                    
+                  })}>
                     <Button style={{opacity:0.9,backgroundColor:"#150d0d",
                     borderBottomLeftRadius:0,borderTopLeftRadius:0,
                     borderBottomRightRadius:8,borderTopRightRadius:8,width:150}}
-                    onPress={()=> navigation.navigate('Withdraw', {
-                      username:user.username,
-                      userid:user.id,
-                      "activated":user.activated,
-                      "limit":user.limit,
-                      withdrawalRequest:user.withdrawalRequest
-                      
-                    })}
+                    
                     >
-                        <Text style={{color:'white'}}>WITHDRAW</Text>
+                        <Text style={{color:'white'}}>SEND</Text>
                     </Button>
                    </TouchableOpacity>
                 </View>

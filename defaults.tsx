@@ -5,8 +5,8 @@ import {DefaultTheme as NavigationDefaultTheme } from '@react-navigation/native'
 
 
 
-export  const sitename = 'sonatafx';
-export const sitelink = 'sonatafx.com';
+export  const sitename = 'Aquanerdfx';
+export const sitelink = 'aquanerdfx.online';
 
 export const  themeDark = {
     ...DarkTheme,
@@ -20,11 +20,12 @@ export const  themeDark = {
         background:'#060e17',
         card: '#0c1825',
         surface :'#0c1825',
-        primary :'#286ebb',
+        primary :'#28bb78',
         info: "#5bc0de",
         warning: "#f0ad4e",
         danger: "#d9534f",
-        success: "#5cb85c"
+        success: "#5cb85c",
+        text: "#ffffff"
 
     },
     
@@ -37,7 +38,7 @@ export const  themeDark = {
     colors : {
         ...DefaultTheme.colors,
         ...NavigationDefaultTheme.colors,
-            primary:"#328bed",
+            primary:"#28bb78",
             accent:"#009ACD",
             info: "#5bc0de",
             warning: "#f0ad4e",

@@ -38,8 +38,8 @@ import { logout as userLogout} from '../../actions/userActions';
              quality:1
              
          }).then(result => {
-            if (!result.cancelled) {
-                postPicture(result);
+            if (!result.canceled) {                
+                postPicture(result.assets[0]);
               }
          })
      }
@@ -61,7 +61,7 @@ import { logout as userLogout} from '../../actions/userActions';
        } ).then(res => {
          proofLoadingSet(false);
         }
-            ).catch(e => {                
+            ).catch(e => {   
                 Toast.show('network errorr.', {
                     duration: Toast.durations.LONG,
                 })           
@@ -159,6 +159,15 @@ import { logout as userLogout} from '../../actions/userActions';
                     <Card style={{marginTop:1}}>
                         <Card.Content style={{flexDirection:'row',justifyContent:'space-between'}}>
                             <Text>Account Activities</Text>
+                            <FontAwesome5  name='arrow-right'size={15} color={theme.colors.text}/>
+                        </Card.Content>
+                    </Card>
+               </TouchableOpacity>
+
+               <TouchableOpacity onPress={()=> navigation.navigate('LiveChat')}>
+                    <Card style={{marginTop:1}}>
+                        <Card.Content style={{flexDirection:'row',justifyContent:'space-between'}}>
+                            <Text>Chat with us</Text>
                             <FontAwesome5  name='arrow-right'size={15} color={theme.colors.text}/>
                         </Card.Content>
                     </Card>

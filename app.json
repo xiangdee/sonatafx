@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "sonatafx",
-    "slug": "sonatafx",
+    "name": "aquanerdfx",
+    "slug": "aquanerdfx",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -26,10 +26,18 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#f39b9b"
       },
-      "package": "com.android.sonatafx"
+      "package": "com.android.aquanerdfx"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-localization"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0d7d4c16-1cb8-4d27-b934-0dd84c0d7daf"
+      }
     }
   }
 }
